@@ -60,11 +60,11 @@ class ExpenseForm extends Component {
 }
 
 ExpenseForm.propTypes = {
-  onSave: PropTypes.func,
+  onSave: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSave: value => dispatch(actions.addExpense(value).isRequired),
+  onSave: value => dispatch(actions.addExpense(value)),
 });
 
 export default connect(null, mapDispatchToProps)(ExpenseForm);

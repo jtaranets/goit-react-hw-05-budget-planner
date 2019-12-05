@@ -1,0 +1,23 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": ["expenses", "budget"],
+  "properties": {
+    "expenses": {
+      "$id": "#/properties/expenses",
+      "type": "array",
+      "title": "The Expenses Schema"
+    },
+    "budget": {
+      "$id": "#/properties/budget",
+      "type": "string",
+      "title": "The Budget Schema",
+      "default": "",
+      "examples": ["0"],
+      "pattern": "^(.*)$"
+    }
+  }
+}

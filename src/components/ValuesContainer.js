@@ -1,11 +1,14 @@
 import { connect } from 'react-redux';
 import Values from './Values';
-import getTotalExpenses from '../redux/expenses/expensesSelector';
+import {
+  getTotalExpenses,
+  getBalance,
+} from '../redux/expenses/expensesSelector';
 
 const mapStateToProps = state => ({
-  budget: state.budget,
+  budget: parseInt(state.budget, 10) || 0,
   expenses: getTotalExpenses(state),
-  balance: state.budget - getTotalExpenses(state),
+  balance: getBalance(state),
 });
 
 export default connect(mapStateToProps)(Values);

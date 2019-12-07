@@ -20,8 +20,8 @@ const Values = ({ budget, expenses, balance }) => {
 };
 
 Values.propTypes = {
-  budget: PropTypes.string.isRequired,
-  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  budget: PropTypes.number.isRequired,
+  expenses: PropTypes.number.isRequired,
   balance: PropTypes.number.isRequired,
 };
 

@@ -13,7 +13,7 @@ const labelStyles = `
 
 class BudgetForm extends Component {
   state = {
-    budget: 0,
+    budget: '',
   };
 
   handleChange = e => {
@@ -23,10 +23,12 @@ class BudgetForm extends Component {
   };
 
   handleSubmit = e => {
+    const { budget } = this.state;
     e.preventDefault();
-
-    this.props.onSave(this.state.budget);
-    this.setState({ budget: 0 });
+    if (budget > 0) {
+      this.props.onSave(this.state.budget);
+    }
+    this.setState({ budget: '' });
   };
 
   render() {

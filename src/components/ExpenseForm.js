@@ -6,6 +6,7 @@ import Label from './shared/Label';
 import Input from './shared/Input';
 import Button from './shared/Button';
 import * as actions from '../redux/expenses/expensesActions';
+import { getBalance } from '../redux/expenses/expensesSelector';
 
 const labelStyles = `
   margin-bottom: 16px;  
@@ -14,7 +15,7 @@ const labelStyles = `
 class ExpenseForm extends Component {
   state = {
     name: '',
-    amount: 0,
+    amount: '',
   };
 
   handleChange = e => {
@@ -24,10 +25,13 @@ class ExpenseForm extends Component {
   };
 
   handleSubmit = e => {
+    const { balance } = this.props;
+    const { amount } = this.state;
     e.preventDefault();
-
-    this.props.onSave({ ...this.state });
-    this.setState({ name: '', amount: 0 });
+    if (balance >= amount && amount > 0) {
+      this.props.onSave({ ...this.state });
+    }
+    this.setState({ name: '', amount: '' });
   };
 
   render() {
@@ -61,10 +65,15 @@ class ExpenseForm extends Component {
 
 ExpenseForm.propTypes = {
   onSave: PropTypes.func.isRequired,
+  balance: PropTypes.number.isRequired,
 };
+
+const mapStateToProps = state => ({
+  balance: getBalance(state),
+});
 
 const mapDispatchToProps = dispatch => ({
   onSave: value => dispatch(actions.addExpense(value)),
 });
 
-export default connect(null, mapDispatchToProps)(ExpenseForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm);

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import expensesReducer from './expenses/expensesReducer';
 import budgetReducer from './budget/budgetReducer';
-import storeValidation from './middlewares/middleware';
+import storeValidation from './middlewares/validateStore';
 
 const rootReducer = combineReducers({
   expenses: expensesReducer,
